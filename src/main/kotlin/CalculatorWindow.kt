@@ -71,6 +71,45 @@ class CalculatorWindow: JFrame("Calculator") {
 
     private fun handleButton(label: String) {
         when (label) {
+            "√" -> {
+                val number = display.text.toDoubleOrNull() ?:return
+                try{
+                    val result = calculator.squareRoot(number)
+                    display.text = result.toString()
+                    startNewNumber = false
+                }catch(error: IllegalArgumentException){
+                    display.text = "Error"
+                    startNewNumber = true
+                }
+            }
+            "1/x" -> {
+                val number = display.text.toDoubleOrNull() ?: return
+                try {
+                    val result= calculator.reciprocal(number)
+                    display.text = result.toString()
+                    startNewNumber = false
+                }catch(error: IllegalArgumentException){
+                    display.text = "Error"
+                    startNewNumber = true
+
+                }
+            }
+            "x²" -> {
+                val number = display.text.toDoubleOrNull() ?: return
+                val result = calculator.square(number)
+
+                display.text = result.toString()
+                startNewNumber = false
+            }
+
+            "%" -> {
+                val number = display.text.toDoubleOrNull() ?: return
+                val result = calculator.percentage(number)
+
+                display.text = result.toString()
+                startNewNumber = false
+            }
+
             "+/-" -> {
                 val current = display.text.toDoubleOrNull()
                 if (current != null && current != 0.0) {
@@ -80,10 +119,11 @@ class CalculatorWindow: JFrame("Calculator") {
             }
 
             "⌫" -> {
+                val shortened =display.text.dropLast(1)
                 display.text = if (display.text.length > 1 && display.text != "Error") {
                     display.text.dropLast(1)
                 } else {
-                    "0"
+                    shortened
                 }
             }
 
@@ -121,6 +161,7 @@ class CalculatorWindow: JFrame("Calculator") {
     }
 
     private fun calculateResult() {
+        if(startNewNumber) return
         val first = firstNumber ?: return
         val second = display.text.toDoubleOrNull() ?: return
         val operator = selectedOperator ?: return
