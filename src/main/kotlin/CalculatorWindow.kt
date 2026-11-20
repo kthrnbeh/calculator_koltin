@@ -24,12 +24,13 @@ class CalculatorWindow: JFrame("Calculator") {
         display.horizontalAlignment = JTextField.RIGHT
         display.isEditable = false
         add(display, BorderLayout.NORTH)
-        val buttonPanel = JPanel(GridLayout(4, 4, 5, 5))
+        val buttonPanel = JPanel(GridLayout(5, 4, 5, 5))
         val buttons = listOf(
             "7", "8", "9", "/",
             "4", "5", "6", "*",
             "1", "2", "3", "-",
-            "C", "0", ".", "+"
+            "C", "0", ".", "+",
+            "%", "x²", "1/x", "√"
         )
         for (label in buttons) {
             val button = JButton(label)
