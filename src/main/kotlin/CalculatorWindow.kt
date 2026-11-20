@@ -71,6 +71,7 @@ class CalculatorWindow: JFrame("Calculator") {
         controlPanel.add(backspaceButton)
         controlPanel.add(signButton)
         controlPanel.add(equalsButton)
+        controlPanel.add(answerButton)
         bottomPanel.add(controlPanel, BorderLayout.NORTH)
         historyArea.isEditable = false
         val clearHistoryButton = JButton("Clear History")
@@ -85,6 +86,11 @@ class CalculatorWindow: JFrame("Calculator") {
 
     private fun handleButton(label: String) {
         when (label) {
+            "ANS" ->{
+                val answer = lastAnswer ?: return
+                display.text = answer.toString()
+                startNewNumber = false
+            }
             "√" -> {
                 val number = display.text.toDoubleOrNull() ?:return
                 try{
@@ -225,6 +231,28 @@ class CalculatorWindow: JFrame("Calculator") {
 
             }
         })
+        inputMap.put (
+            KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0)
+            "backspace"
+        )
+        actionMap.put("backspace", object : AbstractAction() {
+            override fun actionPerformed(event: java.awt.event.ActionEvent?) {
+                handleButton("⌫")
+            }
+        })
+        inputMap.put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0)
+            "clear"
+        )
+        actionMap.put("clear", object : AbstractAction() {
+            override fun actionPerformed(event: java.awt.event.ActionEvent?) {
+                handleButton("C")
+            }
+        })
+
+
+
+
     }
 }
 
