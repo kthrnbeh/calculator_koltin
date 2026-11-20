@@ -100,7 +100,11 @@ class CalculatorWindow: JFrame("Calculator") {
                 display.text = if (startNewNumber) {
                     if (label == ".") "0." else label
                 } else {
-                    display.text + label
+                    if (display.text == "0" && label != ".") {
+                        label
+                    } else {
+                        display.text +label
+                    }
                 }
                 startNewNumber = false
             }
