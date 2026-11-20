@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent
 import java.awt.event.KeyEvent
 
 class CalculatorWindow: JFrame("Calculator") {
+    private var lastAnswer: Double? = null
+    private val operationLabel =JLabel("Ready")
     private val calculator: Calculator = Calculator()
     private val display = JTextField("0")
     private val historyArea = JTextArea(5, 20)
@@ -23,6 +25,10 @@ class CalculatorWindow: JFrame("Calculator") {
         display.font = Font("Arial", Font.BOLD, 30)
         display.horizontalAlignment = JTextField.RIGHT
         display.isEditable = false
+        val displayPanel = JPanel(BorderLayout())
+        operationLabel.horizontalAlignment = JLabel.RIGHT
+        displayPanel.add(operationLabel, BorderLayout.NORTH)
+        displayPanel.add(display, BorderLayout.CENTER)
         add(display, BorderLayout.NORTH)
         val buttonPanel = JPanel(GridLayout(5, 4, 5, 5))
         val buttons = listOf(
@@ -57,7 +63,11 @@ class CalculatorWindow: JFrame("Calculator") {
         clearEntryButton.addActionListener {
             handleButton("CE")
         }
-        val controlPanel = JPanel(GridLayout(1, 4, 5, 5))
+        val answerButton = JButton ("ANS")
+        answerButton.addActionListener {
+            handleButton("ANS")
+        }
+        val controlPanel = JPanel(GridLayout(1, 5, 5, 5))
         controlPanel.add(backspaceButton)
         controlPanel.add(signButton)
         controlPanel.add(equalsButton)
@@ -140,6 +150,7 @@ class CalculatorWindow: JFrame("Calculator") {
                 display.text = "0"
                 firstNumber = null
                 selectedOperator = null
+                operationLabel.text ="Ready"
                 startNewNumber = true
             }
 
@@ -162,10 +173,13 @@ class CalculatorWindow: JFrame("Calculator") {
             "+", "-", "*", "/" -> {
                 firstNumber = display.text.toDoubleOrNull()
                 selectedOperator = label
+                operationLabel.text = "$firstNumber $label"
                 startNewNumber = true
             }
 
+
             "=" -> calculateResult()
+
         }
     }
 
@@ -176,6 +190,7 @@ class CalculatorWindow: JFrame("Calculator") {
         val operator = selectedOperator ?: return
         try {
             val result = calculator.calculate(first, operator, second)
+            lastAnswer = result
             historyArea.append("$first $operator $second = $result\n")
             display.text = result.toString()
             startNewNumber = true
@@ -185,6 +200,7 @@ class CalculatorWindow: JFrame("Calculator") {
         }
         firstNumber = null
         selectedOperator = null
+        operationLabel.text = "Ready"
     }
 
     private fun setupKeyboard() {
