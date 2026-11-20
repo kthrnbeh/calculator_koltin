@@ -120,11 +120,12 @@ class CalculatorWindow: JFrame("Calculator") {
 
             "⌫" -> {
                 val shortened =display.text.dropLast(1)
-                display.text = if (display.text.length > 1 && display.text != "Error") {
-                    display.text.dropLast(1)
-                } else {
+                display.text = if (display.text.length > 1 && display.text != "Error"&& shortened != "-") {
                     shortened
+                } else {
+                   "0"
                 }
+                startNewNumber = false
             }
 
             "C" -> {
