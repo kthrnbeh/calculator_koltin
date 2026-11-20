@@ -131,6 +131,10 @@ class CalculatorWindow: JFrame("Calculator") {
                 }
                 startNewNumber = false
             }
+            "CE" ->{
+                display.text = "0"
+                startNewNumber = true
+            }
 
             "C" -> {
                 display.text = "0"
