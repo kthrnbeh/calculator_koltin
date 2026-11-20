@@ -53,7 +53,11 @@ class CalculatorWindow: JFrame("Calculator") {
         equalsButton.addActionListener {
             handleButton("=")
         }
-        val controlPanel = JPanel(GridLayout(1, 3, 5, 5))
+        val clearEntryButton = JButton ("CE")
+        clearEntryButton.addActionListener {
+            handleButton("CE")
+        }
+        val controlPanel = JPanel(GridLayout(1, 4, 5, 5))
         controlPanel.add(backspaceButton)
         controlPanel.add(signButton)
         controlPanel.add(equalsButton)
