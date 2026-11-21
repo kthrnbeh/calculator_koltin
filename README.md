@@ -16,7 +16,7 @@ My main purpose in developing this software was to learn Kotlin through hands-on
 [Software Demo Video](http://youtube.link.goes.here)
 
 # Development Environment
-check
+
 Intell Idea, Kotlin
 
 Classes, functions, val, var, private, conditionals with error handling, 
