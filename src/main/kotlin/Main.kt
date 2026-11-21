@@ -2,7 +2,9 @@ package org.example
 
 import javax.swing.SwingUtilities
 
-
+//purpose this area allows users to pick a number
+//I also demo here that in terminal you can just input a number, and
+// a operation and it will give an answer.
 fun runConsoleCalculator() {
     val calculator = Calculator()
     //purpose used to support modified entities
@@ -41,20 +43,6 @@ fun runConsoleCalculator() {
             break
 
         }
-        /*
-        try {
-            calculator.divide(10.0, 0.0)
-        } catch (error: IllegalArgumentException) {
-            println("error: ${error.message}")
-        }
-        val selectedOperator = "+"
-        try {
-            val result = calculator.calculate(8.0, selectedOperator, 3.0)
-            println("selected operator: $selectedOperator")
-            println("Result: $result")
-        } catch (error: IllegalArgumentException) {
-            println("error: ${error.message}")
-        }*/
     }
 }
 fun main(){
