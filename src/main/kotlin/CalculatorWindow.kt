@@ -29,7 +29,7 @@ class CalculatorWindow: JFrame("Calculator") {
         operationLabel.horizontalAlignment = JLabel.RIGHT
         displayPanel.add(operationLabel, BorderLayout.NORTH)
         displayPanel.add(display, BorderLayout.CENTER)
-        add(display, BorderLayout.NORTH)
+        add(displayPanel, BorderLayout.NORTH)
         val buttonPanel = JPanel(GridLayout(5, 4, 5, 5))
         val buttons = listOf(
             "7", "8", "9", "/",
@@ -71,6 +71,7 @@ class CalculatorWindow: JFrame("Calculator") {
         controlPanel.add(backspaceButton)
         controlPanel.add(signButton)
         controlPanel.add(equalsButton)
+        controlPanel.add(clearEntryButton)
         controlPanel.add(answerButton)
         bottomPanel.add(controlPanel, BorderLayout.NORTH)
         historyArea.isEditable = false
@@ -232,7 +233,7 @@ class CalculatorWindow: JFrame("Calculator") {
             }
         })
         inputMap.put (
-            KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0)
+            KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0),
             "backspace"
         )
         actionMap.put("backspace", object : AbstractAction() {
@@ -241,7 +242,7 @@ class CalculatorWindow: JFrame("Calculator") {
             }
         })
         inputMap.put(
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0)
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
             "clear"
         )
         actionMap.put("clear", object : AbstractAction() {
