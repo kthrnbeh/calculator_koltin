@@ -96,6 +96,7 @@ class CalculatorWindow: JFrame("Calculator") {
                 val number = display.text.toDoubleOrNull() ?:return
                 try{
                     val result = calculator.squareRoot(number)
+                    lastAnswer = result
                     display.text = result.toString()
                     startNewNumber = false
                 }catch(error: IllegalArgumentException){
@@ -107,6 +108,7 @@ class CalculatorWindow: JFrame("Calculator") {
                 val number = display.text.toDoubleOrNull() ?: return
                 try {
                     val result= calculator.reciprocal(number)
+                    lastAnswer = result
                     display.text = result.toString()
                     startNewNumber = false
                 }catch(error: IllegalArgumentException){
@@ -118,6 +120,7 @@ class CalculatorWindow: JFrame("Calculator") {
             "x²" -> {
                 val number = display.text.toDoubleOrNull() ?: return
                 val result = calculator.square(number)
+                lastAnswer = result
 
                 display.text = result.toString()
                 startNewNumber = false
@@ -126,7 +129,7 @@ class CalculatorWindow: JFrame("Calculator") {
             "%" -> {
                 val number = display.text.toDoubleOrNull() ?: return
                 val result = calculator.percentage(number)
-
+                lastAnswer = result
                 display.text = result.toString()
                 startNewNumber = false
             }
