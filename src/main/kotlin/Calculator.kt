@@ -51,7 +51,7 @@ class Calculator {
             "-" -> subtract(first, second)
             "*" -> multiply(first, second)
             "/" -> divide(first, second)
-            else -> throw IllegalArgumentException("unkown operator")
+            else -> throw IllegalArgumentException("unknown operator")
         }
     }
 }
