@@ -5,6 +5,8 @@ import javax.swing.SwingUtilities
 //purpose this area allows users to pick a number
 //I also demo here that in terminal you can just input a number, and
 // a operation and it will give an answer.
+//it displays creates our buttons and gives a history
+
 fun runConsoleCalculator() {
     val calculator = Calculator()
     //purpose used to support modified entities
